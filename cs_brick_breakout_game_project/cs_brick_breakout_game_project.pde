@@ -11,7 +11,6 @@ Ball b;
 Paddle uno;
 Paddle dos;
 Paddle tres;
-//How do I get the paddle to work? 
 
 void setup(){
   size(900, 600);
@@ -53,7 +52,7 @@ void draw(){
   grid.rungrid(b);
   b.display(#FF0000);
   grid.displaygrid();
-  uno.displayIDZero(uno, #FFFF00);
-  dos.displayIDOne(dos, #00FF00);
-  tres.displayIDTwo(tres, #FFFF00);
+  uno.PdisplayIDZero(uno, #FFFF00);
+  dos.PdisplayIDOne(dos, #00FF00);
+  tres.PdisplayIDTwo(tres, #FFFF00);
 }
