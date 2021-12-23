@@ -21,7 +21,7 @@ void setup(){
   tres = new Paddle((width /2) + 30, height - 10, 10, 30, 1.15, 2, #FFFF00);
   b = new Ball((width / 2), height - 10 - 12, 12, #FF0000);
   grid = new Grid();
-  grid.creategrid(8, 30);
+  grid.creategrid(1, 30);
   b.display(#FF0000);
   uno.displayIDZero(uno, #FFFF00);
   dos.displayIDOne(dos, #00FF00);
@@ -55,4 +55,8 @@ void draw(){
   uno.PdisplayIDZero(uno, #FFFF00);
   dos.PdisplayIDOne(dos, #00FF00);
   tres.PdisplayIDTwo(tres, #FFFF00);
+  textSize(20);
+  fill(190);
+  text("Number of Bricks Left: " + (int)grid.checkgrid(), 25, 25);
+  //text("Number of Lives Left: " + (int)lives, unknown, unknown);
 }
