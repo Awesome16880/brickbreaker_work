@@ -49,6 +49,6 @@ void draw(){
   uno.moveIDZero();
   dos.moveIDOne();
   tres.moveIDTwo();
-  grid.rungrid();
+  grid.rungrid(b);
   
 }
