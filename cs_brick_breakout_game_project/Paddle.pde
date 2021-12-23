@@ -45,14 +45,14 @@ class Paddle {
   void displayIDTwo(Paddle p, color c){
     int startingY = height - p.paddleHeight;
     fill(c);
-    rect(width/2 + p.paddleSectionWidth, startingY, 
+    rect(width/2 + (2 * p.paddleSectionWidth), startingY, 
     p.paddleSectionWidth, p.paddleHeight);
   }
   
   void PdisplayIDTwo(Paddle p, color c){
     int startingY = height - p.paddleHeight;
     fill(c);
-    rect(mouseX + p.paddleSectionWidth, startingY, 
+    rect(mouseX + (2 * p.paddleSectionWidth), startingY, 
     p.paddleSectionWidth, p.paddleHeight);
   }
   
