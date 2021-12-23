@@ -1,110 +1,125 @@
-class Brick {
-  int x;
-  int y;
-  int brickHeight;
-  int brickWidth;
-  int protoState;
-  int state;
-  int nextState;
+class Ball {
+  int cx;
+  int cy;
+  int xVel;
+  int yVel;
+  int radius;
+  color c;
+  int ADState = LIVEBALL;
   
-  Brick (){
-    brickWidth = 30;
-    brickHeight = 20;
-    protoState = int(random(0, 100));
-    if (protoState <= 90){
-      state = WHITE; 
+  Ball (){
+    int red = int(random(0, 255));
+    int green = int(random(0, 255));
+    int blue = int(random(0, 255));
+    c = color(red, green, blue);
+    radius = 12;
+    cx = int(random(radius, width - radius));
+    cy = int(random(radius, height - radius));
+    xVel = int(random(-20, 20));
+    if ((xVel > -15) && (xVel < 15)){
+      xVel = 20;
     }
-    else if ((protoState <= 98) && (protoState > 90)){
-      state = CYAN; 
-    }
-    else if (protoState > 98){
-      state = BLUE; 
-    }
+    yVel = int(random(1, 20));
+    
   }
-  Brick (int xx, int yy, int brickWidthh, int brickHeightt){
+  
+  Ball(int x, int y, int r, color f){
     this();
-    x = xx;
-    y = yy;
-    brickWidth = brickWidthh;
-    brickHeight = brickHeightt;
-    //statee = state;
+    radius = r;
+    cx = x;
+    cy = y;
+    c = f;
   }
   
-  void display(){
-    if (state == DEAD){
-      fill(#000000);
-      float small = 0.0000001;
-      rect(x, y, brickWidth * small, brickHeight * small);
+  Ball(int x, int y, int xv, int yv, int r, color f){
+    this();
+    radius = r;
+    cx = x;
+    cy = y;
+    xVel = xv;
+    yVel = yv;
+    c = f;
+  }
+  
+  void display(color cc){
+    fill(cc);
+    circle(this.cx, this.cy, this.radius * 2);
+  }
+  
+  void move(){
+    if ((cx <= radius) || (cx >= (width-radius))) {
+      xVel *= -1;
     }
-    else if (state == BLUE){
-      fill(#00008B);
-      rect(x, y, brickWidth, brickHeight);
+    if ((cy <= radius)) {
+      yVel *= -1;
     }
-    else if (state == CYAN){
-      fill(#00FFFF);
-      rect(x, y, brickWidth, brickHeight);
+    cx += xVel;
+    cy += yVel;
+  }
+  
+  boolean death(){
+    float deadzone = width + (2 * radius);
+    if (cy > deadzone){
+      ADState = DEADBALL;
+      return true;
     }
-    else if (state == WHITE){
-      fill(#FFFFFF);
-      rect(x, y, brickWidth, brickHeight);
+    else {
+      return false;
     }
   }
   
-  void changeBallXYVel(Ball b){
-    if (detectBall(b) == true){
-      b.yVel *= -1;
-      b.xVel *= -1;
-    }
-  }
-  
-  boolean detectBall(Ball b){
-    int checkX = this.x;
-    int checkY = this.y;
+  boolean detectBrick(Brick b) {
+    int checkX = this.cx;
+    int checkY = this.cy;
     float d;
-    //brick x, y
-    //(x, y), (x + brickWidth, y), (x, y + brickHeight), (x + brickWidth, y + brickHeight)
-    if (state > 0){
-      if (this.x <= b.cx) {
-        checkX = b.cx;
+    if (b.state > 0){
+      if (this.cx <= b.x) {
+        checkX = b.x;
       } 
-      else if (this.x >= b.cx+brickWidth) {
-        checkX = b.cx + brickWidth;
+      else if (this.cx >= b.x+b.brickWidth) {
+        checkX = b.x + b.brickWidth;
       }
-      if (this.y <= b.cy) {
-        checkY = b.cy;
+      if (this.cy <= b.y) {
+        checkY = b.y;
       } 
-      else if (this.y >= b.cy + brickHeight) {
-        checkY = b.cy+brickHeight;
+      else if (this.cy >= b.y + b.brickHeight) {
+        checkY = b.y+b.brickHeight;
+       }
+      d = dist(this.cx, this.cy, checkX, checkY);
+      if (d <= this.radius) {
+        return true;
       }
-      d = dist(this.x, this.y, checkX, checkY);
-      return (d <= b.radius);
+      else {
+        return false;
+      }
     }
     else{
       return false;
     }
   }
   
-  void updateState(){
-    state = nextState;
-  }
-  
-  void changeState(boolean detectBall){
-    if (detectBall == true){
-      if (state == WHITE){
-        nextState = DEAD;
-      }
-      else if (state == CYAN){
-        nextState = WHITE;
-      }
-      else if (state == BLUE){
-        nextState = CYAN;
-      }
-      else{
-        nextState = state;
-      }
+  boolean detectPaddle(Paddle p){
+    int checkX = this.cx;
+    int checkY = this.cy;
+    float d;
+    if (this.cx <= p.x){
+      checkX = p.x;
     }
-    else{
-      nextState = state;
+    else if (this.cx >= p.x+p.paddleSectionWidth) {
+      checkX = p.x + p.paddleSectionWidth;
     }
+    if (this.cy <= p.y) {
+      checkY = p.y;
+    } 
+    else if (this.cy >= p.y + p.paddleHeight) {
+      checkY = p.y+p.paddleHeight;
+     }
+     d = dist(this.cx, this.cy, checkX, checkY);
+     if (d <= this.radius){
+       return true;
+     }
+     else{
+       return false;
+     }
   }
 }
