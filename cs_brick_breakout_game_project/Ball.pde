@@ -14,9 +14,9 @@ class Ball {
     radius = 12;
     cx = int(random(radius, width - radius));
     cy = int(random(radius, height - radius));
-    xVel = int(random(-5, 5));
-    if (xVel == 0){
-      xVel = 1;
+    xVel = int(random(-20, 20));
+    if ((xVel > -15) && (xVel < 15)){
+      xVel = 20;
     }
     yVel = 1;
   }
