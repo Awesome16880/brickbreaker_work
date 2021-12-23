@@ -7,6 +7,9 @@ class Paddle {
   int y;
   color c;
   
+  Paddle(){
+  }
+  
   Paddle (int xx, int yy, int paddleHeightt, int paddleSectionWidthh, float sectionEffectx,
   int sectionIDx, color f){
     x = xx;
