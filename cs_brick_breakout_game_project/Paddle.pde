@@ -24,16 +24,35 @@ class Paddle {
     rect(width/2 - p.paddleSectionWidth, startingY, p.paddleSectionWidth, p.paddleHeight);
   }
   
+  void PdisplayIDZero(Paddle p, color c){
+    int startingY = height - p.paddleHeight;
+    fill(c);
+    rect(mouseX - p.paddleSectionWidth, startingY, p.paddleSectionWidth, p.paddleHeight);
+  }
+  
   void displayIDOne(Paddle p, color c){
     int startingY = height - p.paddleHeight;
     fill(c);
     rect(width/2, startingY, p.paddleSectionWidth, p.paddleHeight);
   }
   
+  void PdisplayIDOne(Paddle p, color c){
+    int startingY = height - p.paddleHeight;
+    fill(c);
+    rect(mouseX, startingY, p.paddleSectionWidth, p.paddleHeight);
+  }
+  
   void displayIDTwo(Paddle p, color c){
     int startingY = height - p.paddleHeight;
     fill(c);
     rect(width/2 + p.paddleSectionWidth, startingY, 
+    p.paddleSectionWidth, p.paddleHeight);
+  }
+  
+  void PdisplayIDTwo(Paddle p, color c){
+    int startingY = height - p.paddleHeight;
+    fill(c);
+    rect(mouseX + p.paddleSectionWidth, startingY, 
     p.paddleSectionWidth, p.paddleHeight);
   }
   
