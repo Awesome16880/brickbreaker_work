@@ -18,7 +18,7 @@ class Ball {
     if ((xVel > -15) && (xVel < 15)){
       xVel = 20;
     }
-    yVel = 1;
+    yVel = int(random(1, 20));
   }
   
   Ball(int x, int y, int r, color f){
@@ -49,11 +49,21 @@ class Ball {
     if ((cx <= radius) || (cx >= (width-radius))) {
       xVel *= -1;
     }
-    if (( cy <= radius) || (cy >= (height-radius))) {
+    if ((cy <= radius)) {
       yVel *= -1;
     }
     cx += xVel;
     cy += yVel;
+  }
+  
+  boolean death(){
+    float deadzone = width + (2 * radius);
+    if (cy > deadzone){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   
   boolean detectBrick(Brick b) {
