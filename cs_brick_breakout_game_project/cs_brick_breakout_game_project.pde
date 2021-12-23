@@ -17,8 +17,8 @@ void setup(){
   background(0);
   frameRate(60);
   uno = new Paddle((width / 2) - 30, height - 10, 10, 30, -1.15, 0, #FFFF00);
-  dos = new Paddle((width / 2), height - 10, 10, 30, 1, 1, #00FF00);
-  tres = new Paddle((width /2) + 30, height - 10, 10, 30, 1.15, 2, #FFFF00);
+  dos = new Paddle((width / 2), height - 10, 10, 60, 1, 1, #00FF00);
+  tres = new Paddle((width /2) + 60, height - 10, 10, 30, 1.15, 2, #FFFF00);
   b = new Ball((width / 2), height - 10 - 12, 12, #FF0000);
   grid = new Grid();
   grid.creategrid(1, 30);
@@ -37,7 +37,8 @@ void draw(){
     b.move();
   }
   else if (b.detectPaddle(dos) == true){
-    b.xVel *= 1;     b.yVel *= -1;
+    b.xVel *= 1;     
+    b.yVel *= -1;
     b.move();
   }
   else if (b.detectPaddle(tres) == true){
@@ -59,4 +60,9 @@ void draw(){
   fill(190);
   text("Number of Bricks Left: " + (int)grid.checkgrid(), 25, 25);
   //text("Number of Lives Left: " + (int)lives, unknown, unknown);
+  if (b.death() == true){
+    b.xVel = 0;
+    b.yVel = 0;
+    in_play = false;
+  }
 }
