@@ -3,8 +3,11 @@ int DEAD = 0;
 int WHITE = 1;
 int CYAN = 2;
 int BLUE = 3;
+int LIVEBALL = 69;
+int DEADBALL = 70;
 
 boolean in_play = true;
+int lives = 3;
 
 Grid grid;
 Ball b;
@@ -59,10 +62,17 @@ void draw(){
   textSize(20);
   fill(190);
   text("Number of Bricks Left: " + (int)grid.checkgrid(), 25, 25);
-  //text("Number of Lives Left: " + (int)lives, unknown, unknown);
+  text("Number of Lives Left: " + (int)lives, 500, 25);
   if (b.death() == true){
     b.xVel = 0;
     b.yVel = 0;
+    lives = lives - 1;
+  }
+  if ((b.ADState == DEADBALL) && (lives > 0)){
+    b = new Ball((width / 2), height - 10 - 12, 12, #FF0000);
+  }
+  if (lives <= 0){
     in_play = false;
+    lives = 0;
   }
 }
