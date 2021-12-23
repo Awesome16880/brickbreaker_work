@@ -30,7 +30,8 @@ void setup(){
 }
 
 void draw(){
-  println (b + " " + uno + " " + dos + " " + tres + " " + grid);
+  //println (b + " " + uno + " " + dos + " " + tres + " " + grid);
+  background(0);
   if (b.detectPaddle(uno) == true){
     b.xVel *= -1.15;
     b.yVel *= -1;
@@ -50,5 +51,9 @@ void draw(){
   dos.moveIDOne();
   tres.moveIDTwo();
   grid.rungrid(b);
-  
+  b.display(#FF0000);
+  grid.displaygrid();
+  uno.displayIDZero(uno, #FFFF00);
+  dos.displayIDOne(dos, #00FF00);
+  tres.displayIDTwo(tres, #FFFF00);
 }
