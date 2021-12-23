@@ -2,8 +2,6 @@ class Grid {
   int rows;
   int numBricks; //number of bricks per row
   Brick grid[][];
-  Brick b;
-  Ball bb;
   Grid (){ 
   }
   
@@ -12,6 +10,7 @@ class Grid {
     int x = 0; int y = 0;
     for (int r = 0; r < grid.length; r++){ 
         for (int c = 0; c < grid[r].length; c++){
+          Brick b;
           b =  new Brick(x, y, 30, 20);
           println("brick " + r + " " + c + " " + x + " " + y );
           b.display();
@@ -21,9 +20,10 @@ class Grid {
        y = y + 20;
     }//r 
   }
-  void rungrid(){
+  void rungrid(Ball bb){
     for (int r = 0; r < grid.length; r++){
       for (int c = 0; c < grid[r].length; r++){
+        Brick b = grid[r][c];
         b.changeState(b.detectBall(bb));
         b.updateState();
         }
@@ -33,6 +33,7 @@ class Grid {
     int n = grid.length;
     for (int r = 0; r < grid.length; r++){
       for (int c = 0; c < grid[r].length; r++){
+        Brick b = grid[r][c];
         if (b.state == DEAD){
           n = n - 1;
         }
