@@ -19,7 +19,8 @@ class Ball {
     if ((xVel > -15) && (xVel < 15)){
       xVel = 20;
     }
-    yVel = int(random(1, 20));
+    int protoyVel = int(random(1, 20));
+    yVel = protoyVel * -1;
   }
   
   Ball(int x, int y, int r, color f){
