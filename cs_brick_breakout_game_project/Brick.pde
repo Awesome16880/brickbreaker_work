@@ -33,7 +33,8 @@ class Brick {
   void display(){
     if (state == DEAD){
       fill(#000000);
-      rect(x, y, brickWidth, brickHeight);
+      float small = 0.0000001;
+      rect(x, y, brickWidth * small, brickHeight * small);
     }
     else if (state == BLUE){
       fill(#00008B);
@@ -62,21 +63,25 @@ class Brick {
     float d;
     //brick x, y
     //(x, y), (x + brickWidth, y), (x, y + brickHeight), (x + brickWidth, y + brickHeight)
-    
-    if (this.x <= b.cx) {
-      checkX = b.cx;
-    } 
-    else if (this.x >= b.cx+brickWidth) {
-      checkX = b.cx + brickWidth;
+    if (state > 0){
+      if (this.x <= b.cx) {
+        checkX = b.cx;
+      } 
+      else if (this.x >= b.cx+brickWidth) {
+        checkX = b.cx + brickWidth;
+      }
+      if (this.y <= b.cy) {
+        checkY = b.cy;
+      } 
+      else if (this.y >= b.cy + brickHeight) {
+        checkY = b.cy+brickHeight;
+      }
+      d = dist(this.x, this.y, checkX, checkY);
+      return (d <= b.radius);
     }
-    if (this.y <= b.cy) {
-      checkY = b.cy;
-    } 
-    else if (this.y >= b.cy + brickHeight) {
-      checkY = b.cy+brickHeight;
+    else{
+      return false;
     }
-    d = dist(this.x, this.y, checkX, checkY);
-    return (d <= b.radius);
   }
   
   void updateState(){
