@@ -11,19 +11,27 @@ class Grid {
     for (int r = 0; r < grid.length; r++){ 
         for (int c = 0; c < grid[r].length; c++){
           Brick b;
-          b =  new Brick(x, y, 30, 20);
+          b = new Brick(x, y, 30, 20);
           println("brick " + r + " " + c + " " + x + " " + y );
           b.display();
-          b = grid[r][c];
+          grid[r][c] = b;
           x = x + 30;
          } //c
        x = 0;
        y = y + 20;
     }//r 
   }
+  void displaygrid(){
+    for (int r = 0; r < grid.length; r++){
+      for (int c = 0; c < grid[r].length; c++){
+        Brick b = grid[r][c];
+        b.display();
+      }
+    }
+  }
   void rungrid(Ball bb){
     for (int r = 0; r < grid.length; r++){
-      for (int c = 0; c < grid[r].length; r++){
+      for (int c = 0; c < grid[r].length; c++){
         Brick b = grid[r][c];
         b.changeState(b.detectBall(bb));
         b.updateState();
@@ -33,7 +41,7 @@ class Grid {
   void checkgrid(){
     int n = grid.length;
     for (int r = 0; r < grid.length; r++){
-      for (int c = 0; c < grid[r].length; r++){
+      for (int c = 0; c < grid[r].length; c++){
         Brick b = grid[r][c];
         if (b.state == DEAD){
           n = n - 1;
