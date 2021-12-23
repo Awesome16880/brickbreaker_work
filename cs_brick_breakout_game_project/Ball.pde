@@ -5,6 +5,7 @@ class Ball {
   int yVel;
   int radius;
   color c;
+  int ADState = LIVEBALL;
   
   Ball (){
     int red = int(random(0, 255));
@@ -59,6 +60,7 @@ class Ball {
   boolean death(){
     float deadzone = width + (2 * radius);
     if (cy > deadzone){
+      ADState = DEADBALL;
       return true;
     }
     else {
