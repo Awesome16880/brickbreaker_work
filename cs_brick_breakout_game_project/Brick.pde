@@ -11,13 +11,13 @@ class Brick {
     brickWidth = 30;
     brickHeight = 20;
     protoState = int(random(0, 100));
-    if (protoState <= 60){
+    if (protoState <= 90){
       state = WHITE; //approximately 60% chance of white brick (state = 1)
     }
-    else if ((protoState <= 90) && (protoState > 60)){
+    else if ((protoState <= 98) && (protoState > 90)){
       state = CYAN; //approximately 30% chance of cyan brick (state = 2)
     }
-    else if (protoState > 90){
+    else if (protoState > 98){
       state = BLUE; //approximately 10% chance of blue brick (state = 3)
     }
   }
@@ -49,9 +49,10 @@ class Brick {
     }
   }
   
-  void changeBallYVel(Ball b){
+  void changeBallXYVel(Ball b){
     if (detectBall(b) == true){
       b.yVel *= -1;
+      b.xVel *= -1;
     }
   }
   
