@@ -7,7 +7,7 @@ int LIVEBALL = 69;
 int DEADBALL = 70;
 
 boolean in_play = true;
-int lives = 1;
+int lives = 3;
 
 Grid grid;
 Ball b;
@@ -24,7 +24,7 @@ void setup(){
   tres = new Paddle((width /2) + 60, height - 10, 10, 30, 1.15, 2, #FFFF00);
   b = new Ball((width / 2), height - 10 - 12, 12, #FF0000);
   grid = new Grid();
-  grid.creategrid(10, 30);
+  grid.creategrid(1, 30);
   b.display(#FF0000);
   uno.displayIDZero(uno, #FFFF00);
   dos.displayIDOne(dos, #00FF00);
