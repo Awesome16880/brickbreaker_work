@@ -14,6 +14,7 @@ class Grid {
           b =  new Brick(x, y, 30, 20);
           println("brick " + r + " " + c + " " + x + " " + y );
           b.display();
+          b = grid[r][c];
           x = x + 30;
          } //c
        x = 0;
