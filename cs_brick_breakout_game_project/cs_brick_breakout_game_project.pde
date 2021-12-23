@@ -7,7 +7,7 @@ int LIVEBALL = 69;
 int DEADBALL = 70;
 
 boolean in_play = true;
-int lives = 3;
+int lives = 5;
 
 Grid grid;
 Ball b;
@@ -69,7 +69,13 @@ void draw(){
     lives = lives - 1;
   }
   if ((b.ADState == DEADBALL) && (lives > 0)){
-    b = new Ball((width / 2), height - 10 - 12, 12, #FF0000);
+    int p = int(random(15, 20));
+    int q = int(random(0, 2));
+    if (q == 0){
+      p = p * -1;
+    }
+    int r = int(random(-20, -1));
+    b = new Ball((width / 2), height - 40, p, r, 12, #FF0000);
   }
   if (lives <= 0){
     in_play = false;
